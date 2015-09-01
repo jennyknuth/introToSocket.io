@@ -26,7 +26,18 @@
   var socket = io();
   </script>
   <!-- Your Code BELOW -->
+  <script>
+  var socket = io();
+  $('form').submit(function() {
+    socket.emit('chat message', $('#m').val()) // name of what you are emmiting, value of what you are emmitting
+    $('#m').val('')
+    return false // to tell socket io to stop looking/listening, good time to stop
+  })
 
+  socket.on('chat message', function(msg) {
+    $('#messages').append($('<li>').text(msg))
+  })
+  </script>
 
 
 
